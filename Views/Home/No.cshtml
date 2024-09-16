@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Content/styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 id="header1" class="header_text">Are you sure it's a NO?'</h1>
+            @*<h1 id="header1" class="header_text">Header</h1>*@
+        </div>
+        <div id="NoGif" class="gif_container">
+            <img src="https://media0.giphy.com/media/Qvm2704d1Dqus/giphy.gif" alt="Michael Scott Sad GIF">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton" onclick="denialReason()">Yes, I'm sure!'</button>
+            <button class="btn" id="noButton" onclick="nextPage()">Nahh just messing around, I'll consider it!'</button>
+            <script>
+                function nextPage() {
+                    $.ajax({
+                        url: '@Url.Action("YesLogs", "Home")',
+                        type: 'POST',
+                        data: {button: 'Yes'},
+                        success: function (result) {
+                            console.log("Yes button clicked!");
+                        },
+                        error: function () {
+                            console.log("Error logging the click.");
+                        }
+                    });
+
+                    window.location.href = '@Url.Action("Yes", "Home")';
+                }
+
+                function denialReason() {
+
+                    $.ajax({
+                        url: '@Url.Action("YesLogs", "Home")',
+                        type: 'POST',
+                        data: {button: 'No'},
+                        success: function (result) {
+                            console.log("No button clicked!");
+                        },
+                        error: function () {
+                            console.log("Error logging the click.");
+                        }
+                    });
+
+                    window.location.href = '@Url.Action("LastPage", "Home")';
+                    }
+            </script>
+        </div>
+    </div>
+
+</body>
+</html>
