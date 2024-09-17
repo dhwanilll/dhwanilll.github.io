@@ -2,19 +2,22 @@
 <html lang="en">
     <head>
         <link rel="stylesheet" href="./styles.css">
-        
+        <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
     </head> 
     <body>
         <div class="container">
             <div>
-                <h1 id="header1" class = "header_text">Would you like to go on a date with me?</h1>
+                <!-- <h1 id="header1" class = "header_text">Would you like to go on a date with me?</h1> -->
             </div>
             <div id="IndexGif" class="gif_container">
-                <img src="https://media0.giphy.com/media/eKDp7xvUdbCrC/giphy.gif" alt="Michael Scott GIF">
+                <!-- <img src="https://media0.giphy.com/media/eKDp7xvUdbCrC/giphy.gif" alt="Michael Scott GIF"> -->
             </div>
             <div class = "buttons">
                 <button class="btn" id="yesButton" onclick="nextPage()">Yes, for sure!</button>
-                <button class="btn" id="noButton" onmouseover="moveButton()" onclick="denialReason()">Umm..No</button>
+                <!-- <button class="btn" id="noButton" onmouseover="moveButton()" onclick="denialReason()">Umm..No</button> -->
+
+                
                 <script>
 
                     var firebaseConfig = {
@@ -38,6 +41,7 @@
                     // }
 
                     function nextPage() {
+                        debugger
                         var logEntry = {
                             message: "Yes button clicked",
                             timestamp: new Date().toLocaleString()
@@ -46,7 +50,7 @@
                         database.ref('logs').push(logEntry);
 
                         // Redirect to the logs page
-                        window.location.href = "yes.html";
+                        window.location.href = "logs.html";
                     }
                     
                     var counter = 0;
@@ -68,9 +72,6 @@
                         window.location.href = "denialreason.html";
                     }
                 </script>
-
-                <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
-                <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
             </div>
         </div>
        

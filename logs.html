@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click Logs</title>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.7/firebase-database.js"></script>
+    <script>
+        // Your Firebase configuration (replace with your own Firebase config)
+        var firebaseConfig = {
+            apiKey: "AIzaSyDL7xzKzd4k_gPUhQag7PkSeGStmiYb0mE",
+            authDomain: "fir-4a72e.firebaseapp.com",
+            projectId: "fir-4a72e",
+            storageBucket: "fir-4a72e.appspot.com",
+            messagingSenderId: "750225875821",
+            appId: "1:750225875821:web:e05ccaab9803d1abbbf064",
+            databaseURL: "https://fir-4a72e-default-rtdb.firebaseio.com"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        var database = firebase.database();
+        
+        // Function to retrieve and display logs
+        window.onload = function() {
+            var logContainer = document.getElementById('logContainer');
+            
+            // Retrieve logs from Firebase
+            database.ref('logs').on('value', function(snapshot) {
+                logContainer.innerHTML = ''; // Clear previous logs
+                var logs = snapshot.val();
+                for (var key in logs) {
+                    var log = logs[key];
+                    var logItem = document.createElement('p');
+                    logItem.textContent = `${log.message} at ${log.timestamp}`;
+                    logContainer.appendChild(logItem);
+                }
+            });
+        };
+    </script>
+</head>
+<body>
+    <h1>Yes Button Click Logs</h1>
+    <div id="logContainer"></div>
+    <a href="index.html">Go Back</a>
+</body>
+</html>
