@@ -27,12 +27,16 @@
                         storageBucket: "fir-4a72e.appspot.com",
                         messagingSenderId: "750225875821",
                         appId: "1:750225875821:web:e05ccaab9803d1abbbf064",
-                        databaseURL: "https://fir-4a72e-default-rtdb.firebaseio.com"
+                        databaseURL: "https://fir-4a72e-default-rtdb.firebaseio.com/"
                     };
 
                     // Initialize Firebase
                     firebase.initializeApp(firebaseConfig);
                     var database = firebase.database();
+                    console.log("Firebase initialized successfully");
+
+                    var database = firebase.database();
+                    console.log("Database reference initialized:", database);
 
 
                     // function nextPage() {
@@ -41,16 +45,26 @@
                     // }
 
                     function nextPage() {
-                        debugger
                         var logEntry = {
                             message: "Yes button clicked",
                             timestamp: new Date().toLocaleString()
                         };
+                        // Log to the console to see if the function is called
+                        console.log("Button clicked, logEntry:", logEntry);
+
                         // Push the log entry to Firebase
-                        database.ref('logs').push(logEntry);
+                        database.ref('logs').push(logEntry, function(error) {
+                            if (error) {
+                                console.error("Error writing log to Firebase:", error);
+                            } else {
+                                console.log("Log successfully written to Firebase");
+                            }
+                        }).catch(function(error) {
+                            console.error("Error caught during push:", error);
+                        });
 
                         // Redirect to the logs page
-                        window.location.href = "logs.html";
+                        window.location.href = "yes.html";
                     }
                     
                     var counter = 0;
