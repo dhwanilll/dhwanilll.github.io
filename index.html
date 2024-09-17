@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="./styles.css">
+        
+    </head> 
+    <body>
+        <div class="container">
+            <div>
+                <h1 id="header1" class = "header_text">Would you like to go on a date with me?</h1>
+            </div>
+            <div id="IndexGif" class="gif_container">
+                <img src="https://media0.giphy.com/media/eKDp7xvUdbCrC/giphy.gif" alt="Michael Scott GIF">
+            </div>
+            <div class = "buttons">
+                <button class="btn" id="yesButton" onclick="nextPage()">Yes, for sure!</button>
+                <button class="btn" id="noButton" onmouseover="moveButton()" onclick="denialReason()">Umm..No</button>
+                <script>
+
+                    var firebaseConfig = {
+                        apiKey: "AIzaSyDL7xzKzd4k_gPUhQag7PkSeGStmiYb0mE",
+                        authDomain: "fir-4a72e.firebaseapp.com",
+                        projectId: "fir-4a72e",
+                        storageBucket: "fir-4a72e.appspot.com",
+                        messagingSenderId: "750225875821",
+                        appId: "1:750225875821:web:e05ccaab9803d1abbbf064",
+                        databaseURL: "https://fir-4a72e-default-rtdb.firebaseio.com"
+                    };
+
+                    // Initialize Firebase
+                    firebase.initializeApp(firebaseConfig);
+                    var database = firebase.database();
+
+
+                    // function nextPage() {
+
+                    //     window.location.href = "yes.html";
+                    // }
+
+                    function nextPage() {
+                        var logEntry = {
+                            message: "Yes button clicked",
+                            timestamp: new Date().toLocaleString()
+                        };
+                        // Push the log entry to Firebase
+                        database.ref('logs').push(logEntry);
+
+                        // Redirect to the logs page
+                        window.location.href = "yes.html";
+                    }
+                    
+                    var counter = 0;
+                    function moveButton() {
+                        if (counter < 10) {
+                            var x = Math.random() * (window.innerWidth - document.getElementById('noButton').offsetWidth) - 85;
+                            var y = Math.random() * (window.innerHeight - document.getElementById('noButton').offsetHeight) - 48;
+                            document.getElementById('noButton').style.left = `${x}px`;
+                            document.getElementById('noButton').style.top = `${y}px`;
+                            counter ++;
+                        }
+                        else {
+                            document.getElementById('header1').html('');
+                            document.getElementById('header1').html("Okay fine, nothing forceful! Go ahead, click that 'NO' if you wish to :(");
+                        }
+                    }
+
+                    function denialReason() {
+                        window.location.href = "denialreason.html";
+                    }
+                </script>
+
+                <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+                <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+            </div>
+        </div>
+       
+    </body> 
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="./styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h1 id="header1" class="header_text">Are you sure it's a NO?'</h1>
+        </div>
+        <div id="DenialReasonGif" class="gif_container">
+            <img src="https://media0.giphy.com/media/Qvm2704d1Dqus/giphy.gif" alt="Michael Scott Sad GIF">
+        </div>
+        <div class="buttons">
+            <button class="btn" id="yesButton" onclick="denialReason()">Yes, I'm sure!'</button>
+            <button class="btn" id="noButton" onclick="nextPage()">Nahh just messing around, I'll consider it!'</button>
+            <script>
+
+                var firebaseConfig = {
+                    apiKey: "AIzaSyDL7xzKzd4k_gPUhQag7PkSeGStmiYb0mE",
+                    authDomain: "fir-4a72e.firebaseapp.com",
+                    projectId: "fir-4a72e",
+                    storageBucket: "fir-4a72e.appspot.com",
+                    messagingSenderId: "750225875821",
+                    appId: "1:750225875821:web:e05ccaab9803d1abbbf064",
+                    databaseURL: "https://fir-4a72e-default-rtdb.firebaseio.com"
+                };
+
+                // Initialize Firebase
+                firebase.initializeApp(firebaseConfig);
+                var database = firebase.database();
+
+                function nextPage() {
+                    window.location.href = "yes.html";
+                }
+
+                function denialReason() {
+
+                    var logEntry = {
+                        message: "No button clicked",
+                        timestamp: new Date().toLocaleString()
+                    };
+                    // Push the log entry to Firebase
+                    database.ref('logs').push(logEntry);
+
+                    window.location.href = "no.html";
+                }
+            </script>
+
+            <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+            <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
+        </div>
+    </div>
+
+</body>
+</html>
