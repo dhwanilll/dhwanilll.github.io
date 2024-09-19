@@ -33,6 +33,14 @@
                 var database = firebase.database();
 
                 function nextPage() {
+
+                    var logEntry = {
+                        message: "Yes button clicked",
+                        timestamp: new Date().toLocaleString()
+                    };
+                    // Push the log entry to Firebase
+                    database.ref('logs').push(logEntry);
+
                     window.location.href = "yes.html";
                 }
 

@@ -52,6 +52,22 @@ body {
     transition: background-color 0.3s ease;
 }
 
+.btn::hover {
+    background-color: #4bc3f7;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 20px 0px 20px;
+    cursor: pointer;
+    border: solid;
+    border-color: black;
+    border-radius: 12px;
+    border-width: 2px;
+    transition: background-color 0.3s ease;
+}
+
 .gif_container {
     display: flex;
     justify-content: center;
