@@ -14,7 +14,7 @@ body {
 
 #yesButton {
     position: absolute;
-    margin-right: 150px;
+    margin-right: 280px;
 }
 
 .header_text {
@@ -33,7 +33,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    margin-left: 0px;
+    margin-left: 50px;
 }
 
 .btn {
@@ -45,8 +45,10 @@ body {
     font-size: 16px;
     margin: 4px 20px 0px 20px;
     cursor: pointer;
-    border: none;
+    border: solid;
+    border-color: black;
     border-radius: 12px;
+    border-width: 2px;
     transition: background-color 0.3s ease;
 }
 

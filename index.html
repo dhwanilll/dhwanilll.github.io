@@ -38,19 +38,11 @@
                     var database = firebase.database();
                     console.log("Database reference initialized:", database);
 
-
-                    // function nextPage() {
-
-                    //     window.location.href = "yes.html";
-                    // }
-
                     function nextPage() {
                         var logEntry = {
                             message: "Yes button clicked",
                             timestamp: new Date().toLocaleString()
                         };
-                        // Log to the console to see if the function is called
-                        console.log("Button clicked, logEntry:", logEntry);
 
                         // Push the log entry to Firebase
                         database.ref('logs').push(logEntry, function(error) {
@@ -63,9 +55,16 @@
                             console.error("Error caught during push:", error);
                         });
 
-                        // Redirect to the logs page
                         window.location.href = "yes.html";
                     }
+
+                    let initialX, initialY;
+                    window.onload = function() {
+                        // Store the initial position of the button when the page loads
+                        var noButton = document.getElementById('noButton');
+                        initialX = noButton.offsetLeft;
+                        initialY = noButton.offsetTop;
+                    };
                     
                     var counter = 0;
                     function moveButton() {
@@ -77,8 +76,10 @@
                             counter ++;
                         }
                         else {
-                            document.getElementById('header1').html('');
-                            document.getElementById('header1').html("Okay fine, nothing forceful! Go ahead, click that 'NO' if you wish to :(");
+                            document.getElementById('header1').innerHTML = "";
+                            document.getElementById('header1').innerHTML = "Okay fine, nothing forceful! Go ahead, click that 'NO' if you wish to :(";
+                            document.getElementById('noButton').style.left = `${initialX}px`;
+                            document.getElementById('noButton').style.top = `${initialY}px`;
                         }
                     }
 
